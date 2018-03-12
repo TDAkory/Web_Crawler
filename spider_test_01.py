@@ -1,5 +1,4 @@
 import urllib3
-import os
 
 
 def download(url, num_retries=2):
@@ -7,7 +6,7 @@ def download(url, num_retries=2):
     try:
         http = urllib3.PoolManager()
         r = http.request('Get', url)
-        if num_retries >0:
+        if num_retries > 0:
             if 500 <= r.status <= 600:
                 return download(url, num_retries-1)
     except Exception as e:
@@ -26,4 +25,3 @@ if __name__ == '__main__':
     fp.write("Body: \n")
     fp.write(str(data.data))
     fp.close()
-
